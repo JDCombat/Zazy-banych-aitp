@@ -1,0 +1,20 @@
+﻿<Window x:Class="Zazy_banych.OknoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zazy_banych"
+        mc:Ignorable="d"
+        Title="OknoWindow" Height="350" Width="300">
+    <Grid>
+        <Label x:Name="lName" Content="Imie" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lSurname" Content="Nazwisko" HorizontalAlignment="Left" Margin="24,88,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="26" Margin="106,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <TextBox x:Name="tbSurname" HorizontalAlignment="Left" Height="26" Margin="106,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <Label x:Name="lAge" Content="Wiek" HorizontalAlignment="Left" Margin="24,119,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbAge" HorizontalAlignment="Left" Height="26" Margin="106,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <Button x:Name="bCancel" Content="Cancel" HorizontalAlignment="Left" Height="25" Margin="24,241,0,0" VerticalAlignment="Top" Width="111" Click="bCancel_Click"/>
+        <Button x:Name="bSave" Content="Save" HorizontalAlignment="Left" Height="25" Margin="163,241,0,0" VerticalAlignment="Top" Width="111" Click="bSave_Click"/>
+
+    </Grid>
+</Window>

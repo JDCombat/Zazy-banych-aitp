@@ -8,18 +8,28 @@
         Title="MainWindow" Height="450" Width="500">
     <Grid>
         <DataGrid x:Name="dGrid" HorizontalAlignment="Left" Height="279" Margin="10,50,0,0" VerticalAlignment="Top" Width="250" ItemsSource="{Binding}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding Name}" Header="Imie"/>
+                <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+            </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="lName" Content="Server" HorizontalAlignment="Left" Height="26" Margin="273,54,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="26" Margin="368,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="26" Margin="368,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="127.0.0.1"/>
         <Label x:Name="lDatabase" Content="Database" HorizontalAlignment="Left" Height="26" Margin="273,85,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbDatabase" HorizontalAlignment="Left" Height="26" Margin="368,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="tbDatabase" HorizontalAlignment="Left" Height="26" Margin="368,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="2p_dane"/>
         <Label x:Name="lUID" Content="UID" HorizontalAlignment="Left" Height="26" Margin="273,116,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbUID" HorizontalAlignment="Left" Height="26" Margin="368,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105"/>
+        <TextBox x:Name="tbUID" HorizontalAlignment="Left" Height="26" Margin="368,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="root"/>
         <Label x:Name="lPassword" Content="Password" HorizontalAlignment="Left" Height="26" Margin="273,147,0,0" VerticalAlignment="Top" Width="95"/>
         <Button x:Name="bConnect" Content="Connect" HorizontalAlignment="Left" Height="27" Margin="273,190,0,0" VerticalAlignment="Top" Width="95" Click="bConnect_Click"/>
         <Label x:Name="lConnect" Content="Not connected" HorizontalAlignment="Left" Height="27" Margin="373,190,0,0" VerticalAlignment="Top" Width="105"/>
-        <Button x:Name="bData" Content="GetData" HorizontalAlignment="Left" Height="26" Margin="273,222,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="bData" Content="GetData" HorizontalAlignment="Left" Height="26" Margin="273,222,0,0" VerticalAlignment="Top" Width="95" Click="bData_Click"/>
         <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Height="26" Margin="368,147,0,0" VerticalAlignment="Top" Width="105"/>
+        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="26" Margin="273,253,0,0" VerticalAlignment="Top" Width="95" Click="bAdd_Click"/>
+        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="26" Margin="273,284,0,0" VerticalAlignment="Top" Width="95" Click="bRemove_Click"/>
+        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="373,310,0,0" VerticalAlignment="Top" Width="100" Source="./imażes/429769327_709034008095433_8691994001008888259_n.jpg"/>
+
 
     </Grid>
 </Window>

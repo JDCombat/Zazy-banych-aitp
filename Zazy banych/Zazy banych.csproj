@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="imażes\429769327_709034008095433_8691994001008888259_n.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySqlConnector" Version="2.3.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imażes\429769327_709034008095433_8691994001008888259_n.jpg" />
   </ItemGroup>
 
 </Project>
