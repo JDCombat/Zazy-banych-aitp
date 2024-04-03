@@ -7,12 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="500">
     <Grid>
-        <DataGrid x:Name="dGrid" HorizontalAlignment="Left" Height="279" Margin="10,50,0,0" VerticalAlignment="Top" Width="250" ItemsSource="{Binding}">
+        <DataGrid x:Name="dGrid" HorizontalAlignment="Left" Height="279" Margin="10,50,0,0" VerticalAlignment="Top" Width="250" ItemsSource="{Binding}" SelectionChanged="dGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Imie"/>
                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko"/>
                 <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+
             </DataGrid.Columns>
         </DataGrid>
         <Label x:Name="lName" Content="Server" HorizontalAlignment="Left" Height="26" Margin="273,54,0,0" VerticalAlignment="Top" Width="95"/>
@@ -28,7 +34,8 @@
         <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Height="26" Margin="368,147,0,0" VerticalAlignment="Top" Width="105"/>
         <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="26" Margin="273,253,0,0" VerticalAlignment="Top" Width="95" Click="bAdd_Click"/>
         <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="26" Margin="273,284,0,0" VerticalAlignment="Top" Width="95" Click="bRemove_Click"/>
-        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="373,310,0,0" VerticalAlignment="Top" Width="100" Source="./imażes/429769327_709034008095433_8691994001008888259_n.jpg"/>
+        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="373,310,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="bEdit" Content="Edytuj" HorizontalAlignment="Left" Height="26" Margin="273,315,0,0" VerticalAlignment="Top" Width="95" Click="bEdit_Click"/>
 
 
     </Grid>

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,11 +25,13 @@ namespace Zazy_banych
         public OknoWindow()
         {
             InitializeComponent();
-
         }
         public OknoWindow(Contact contact):this()
         {
-
+            _contact = contact;
+            tbName.Text = contact.Name;
+            tbAge.Text = contact.Age.ToString();
+            tbSurname.Text = contact.Surname;
         }
         private void bCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -49,5 +53,20 @@ namespace Zazy_banych
             return;
         }
 
+        private void bImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            bool? result = op.ShowDialog();
+            if (result == true)
+            {
+                var filename = op.FileName;
+                var bytes = File.ReadAllBytes(filename);
+                _contact.ImageBytes = bytes;
+            }
+        }
     }
 }

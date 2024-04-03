@@ -12,6 +12,11 @@ namespace Zazy_banych
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Age { get; set; }
-
+        public byte[] ImageBytes { get; set; }
+        public string pesel { get; set;}
+        public DateTime BrithDate { get; set; }
+        public string domciu { get; set; }
+        public string number { get; set; }
+        public string additional { get; set; }
     }
 }

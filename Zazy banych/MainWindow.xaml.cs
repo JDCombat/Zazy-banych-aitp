@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -63,7 +66,6 @@ namespace Zazy_banych
                 connection.Close();
             }
         }
-
         private void bData_Click(object sender, RoutedEventArgs e)
         {
             connection.Close();
@@ -81,6 +83,7 @@ namespace Zazy_banych
                         contact.Name = reader["Imie"].ToString();
                         contact.Surname = reader["Nazwisko"].ToString();
                         contact.Age = int.Parse(reader["wiek"].ToString());
+                        contact.ImageBytes = (Byte[])reader["zdjecie"];
                         dGrid.Items.Add(contact);
                     }
                 }
@@ -98,14 +101,19 @@ namespace Zazy_banych
         {
             connection.Close();
             connection.Open();
-            var okno = new OknoWindow();
+            Contact contact = new Contact();
+            var okno = new OknoWindow(contact);
             okno.ShowDialog();
             if (okno.DialogResult == true)
             {
-                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, wiek) VALUES('{okno.Name}', '{okno.Surname}', {okno.age})", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, wiek, zdjecie) VALUES('{contact.Name}', '{contact.Surname}', {contact.Age}, ?data)", connection);
+                MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, contact.ImageBytes.Length);
+                fileParameter.Value = contact.ImageBytes;
+                command.Parameters.Add(fileParameter);
                 command.ExecuteReader();
                 command.Dispose();
                 connection.Close() ;
+                bData_Click(null, null);
             }
 
         }
@@ -122,5 +130,52 @@ namespace Zazy_banych
             bData_Click(null, null);
         }
 
+        private void bEdit_Click(object sender, RoutedEventArgs e)
+        {
+            connection.Close();
+            connection.Open();
+            var selected = dGrid.SelectedItems[0] as Contact;
+            var okno = new OknoWindow(selected);
+            okno.ShowDialog();
+            var command = new MySqlCommand($"UPDATE 2pdane SET Imie = '{selected.Name}', Nazwisko = '{selected.Surname}', Wiek = {selected.Age}, zdjecie = ?data WHERE id = {selected.Id}",connection);
+            MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, selected.ImageBytes.Length);
+            fileParameter.Value = selected.ImageBytes;
+            command.Parameters.Add(fileParameter);
+            command.ExecuteReader();
+            command.Dispose();
+            connection.Close();
+            bData_Click(null, null);
+        }
+
+        private void dGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(dGrid.SelectedItem == null)
+            {
+                return;
+            }
+            else
+            {
+                try
+                {
+                    BitmapImage image = new BitmapImage();
+                    using (var mem = new MemoryStream(((Contact)dGrid.SelectedItems[0]).ImageBytes))
+                    {
+                        mem.Position = 0;
+                        image.BeginInit();
+                        image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                        image.CacheOption = BitmapCacheOption.OnLoad;
+                        image.UriSource = null;
+                        image.StreamSource = mem;
+                        image.EndInit();
+                    }
+                    iImage.Source = image;
+                } catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString(),"Błąd przy obrazieeeee" ,MessageBoxButton.OK);
+                }
+
+            }
+
+        }
     }
 }
