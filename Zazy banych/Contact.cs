@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
 
 namespace Zazy_banych
 {
@@ -13,7 +14,8 @@ namespace Zazy_banych
         public string Surname { get; set; }
         public int Age { get; set; }
         public byte[] ImageBytes { get; set; }
-        public string pesel { get; set;}
+        public string Pesel { get; set;}
+        public string Sex { get; set;}
         public DateTime BrithDate { get; set; }
         public string domciu { get; set; }
         public string number { get; set; }
