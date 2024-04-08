@@ -5,6 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,7 @@ namespace Zazy_banych
                     UserID = tbUID.Text,
                     Password = pbPassword.Password,
                     SslMode = MySqlSslMode.None,
+                    ConvertZeroDateTime = true,
                 };
                 connection = new MySqlConnection(builder.ConnectionString);
             if (bConnect.Content.ToString() != "Disconnect")
@@ -74,19 +76,25 @@ namespace Zazy_banych
             try
             {
                 MySqlCommand command = new MySqlCommand("SELECT * from `2pdane`", connection);
+                int lp = 1;
                 using(var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         Contact contact = new Contact();
+                        contact.Lp = lp;
                         contact.Id = int.Parse(reader["id"].ToString());
                         contact.Name = reader["Imie"].ToString();
                         contact.Surname = reader["Nazwisko"].ToString();
-                        contact.Age = int.Parse(reader["wiek"].ToString());
                         contact.Pesel = reader["Pesel"].ToString();
-                        contact.Sex = reader["Płeć"].ToString();
+                        contact.Sex = reader["Płeć"].ToString().ToCharArray()[0];
                         contact.number = reader["Telefon"].ToString();
+                        contact.domciu = reader["Adres"].ToString();
+                        contact.Email = reader["E-mail"].ToString();
+                        contact.additional = reader["Inf.dodatkowe"].ToString();
+                        contact.BirthDate = DateTime.Parse(reader["Data urodzenia"].ToString());
                         contact.ImageBytes = (Byte[])reader["zdjecie"];
+                        lp++;
                         dGrid.Items.Add(contact);
                     }
                 }
@@ -109,9 +117,10 @@ namespace Zazy_banych
             okno.ShowDialog();
             if (okno.DialogResult == true)
             {
-                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, wiek, zdjecie) VALUES('{contact.Name}', '{contact.Surname}', {contact.Age}, ?data)", connection);
+                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, zdjecie, Pesel, `Data urodzenia`, Adres, Telefon, `E-mail`, `Inf.dodatkowe`, Płeć) VALUES('{contact.Name}', '{contact.Surname}', ?data, '{contact.Pesel}', @date, '{contact.domciu}', '{contact.number}', '{contact.Email}', '{contact.additional}', {contact.Sex})", connection);
                 MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, contact.ImageBytes.Length);
                 fileParameter.Value = contact.ImageBytes;
+                command.Parameters.AddWithValue("@date", contact.BirthDate);
                 command.Parameters.Add(fileParameter);
                 command.ExecuteReader();
                 command.Dispose();
@@ -140,9 +149,10 @@ namespace Zazy_banych
             var selected = dGrid.SelectedItems[0] as Contact;
             var okno = new OknoWindow(selected);
             okno.ShowDialog();
-            var command = new MySqlCommand($"UPDATE 2pdane SET Imie = '{selected.Name}', Nazwisko = '{selected.Surname}', Wiek = {selected.Age}, zdjecie = ?data WHERE id = {selected.Id}",connection);
+            var command = new MySqlCommand($"UPDATE 2pdane SET Imie = '{selected.Name}', Nazwisko = '{selected.Surname}', zdjecie = ?data, Pesel = '{selected.Pesel}', `Data urodzenia` = @date, Adres = '{selected.domciu}', Telefon = '{selected.number}', `E-mail` = '{selected.Email}', `Inf.dodatkowe` = '{selected.additional}', Płeć = '{selected.Sex}' WHERE id = {selected.Id}",connection);
             MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, selected.ImageBytes.Length);
             fileParameter.Value = selected.ImageBytes;
+            command.Parameters.AddWithValue("@date", selected.BirthDate);
             command.Parameters.Add(fileParameter);
             command.ExecuteReader();
             command.Dispose();
@@ -174,7 +184,7 @@ namespace Zazy_banych
                     iImage.Source = image;
                 } catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message.ToString(),"Błąd przy obrazieeeee" ,MessageBoxButton.OK);
+                    MessageBox.Show(ex.Message.ToString(),"Błąd przy obrazie" ,MessageBoxButton.OK);
                 }
 
             }

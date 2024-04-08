@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Zazy_banych"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="500">
+        Title="MainWindow" Height="450" Width="700">
     <Grid>
-        <DataGrid x:Name="dGrid" HorizontalAlignment="Left" Height="279" Margin="10,50,0,0" VerticalAlignment="Top" Width="250" ItemsSource="{Binding}" SelectionChanged="dGrid_SelectionChanged">
+        <DataGrid x:Name="dGrid" HorizontalAlignment="Left" Height="279" Margin="10,50,0,0" VerticalAlignment="Top" Width="464" ItemsSource="{Binding}" SelectionChanged="dGrid_SelectionChanged">
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Lp}" Header="Lp"/>
                 <DataGridTextColumn Binding="{Binding Id}" Header="ID"/>
                 <DataGridTextColumn Binding="{Binding Name}" Header="Imie"/>
                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
                 <DataGridTextColumn Binding="{Binding Pesel}" Header="PESEL"/>
                 <DataGridTextColumn Binding="{Binding Sex}" Header="Płeć"/>
                 <DataGridTextColumn Binding="{Binding BrithDate}" Header="Data ur."/>
@@ -23,21 +23,21 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Label x:Name="lName" Content="Server" HorizontalAlignment="Left" Height="26" Margin="273,54,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="26" Margin="368,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="127.0.0.1"/>
-        <Label x:Name="lDatabase" Content="Database" HorizontalAlignment="Left" Height="26" Margin="273,85,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbDatabase" HorizontalAlignment="Left" Height="26" Margin="368,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="2p_dane"/>
-        <Label x:Name="lUID" Content="UID" HorizontalAlignment="Left" Height="26" Margin="273,116,0,0" VerticalAlignment="Top" Width="95"/>
-        <TextBox x:Name="tbUID" HorizontalAlignment="Left" Height="26" Margin="368,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="root"/>
-        <Label x:Name="lPassword" Content="Password" HorizontalAlignment="Left" Height="26" Margin="273,147,0,0" VerticalAlignment="Top" Width="95"/>
-        <Button x:Name="bConnect" Content="Connect" HorizontalAlignment="Left" Height="27" Margin="273,190,0,0" VerticalAlignment="Top" Width="95" Click="bConnect_Click"/>
-        <Label x:Name="lConnect" Content="Not connected" HorizontalAlignment="Left" Height="27" Margin="373,190,0,0" VerticalAlignment="Top" Width="105"/>
-        <Button x:Name="bData" Content="GetData" HorizontalAlignment="Left" Height="26" Margin="273,222,0,0" VerticalAlignment="Top" Width="95" Click="bData_Click"/>
-        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Height="26" Margin="368,147,0,0" VerticalAlignment="Top" Width="105"/>
-        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="26" Margin="273,253,0,0" VerticalAlignment="Top" Width="95" Click="bAdd_Click"/>
-        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="26" Margin="273,284,0,0" VerticalAlignment="Top" Width="95" Click="bRemove_Click"/>
-        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="373,310,0,0" VerticalAlignment="Top" Width="100"/>
-        <Button x:Name="bEdit" Content="Edytuj" HorizontalAlignment="Left" Height="26" Margin="273,315,0,0" VerticalAlignment="Top" Width="95" Click="bEdit_Click"/>
+        <Label x:Name="lName" Content="Server" HorizontalAlignment="Left" Height="26" Margin="479,50,0,0" VerticalAlignment="Top" Width="95"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="26" Margin="574,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="127.0.0.1"/>
+        <Label x:Name="lDatabase" Content="Database" HorizontalAlignment="Left" Height="26" Margin="479,81,0,0" VerticalAlignment="Top" Width="95"/>
+        <TextBox x:Name="tbDatabase" HorizontalAlignment="Left" Height="26" Margin="574,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="2p_dane"/>
+        <Label x:Name="lUID" Content="UID" HorizontalAlignment="Left" Height="26" Margin="479,112,0,0" VerticalAlignment="Top" Width="95"/>
+        <TextBox x:Name="tbUID" HorizontalAlignment="Left" Height="26" Margin="574,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="root"/>
+        <Label x:Name="lPassword" Content="Password" HorizontalAlignment="Left" Height="26" Margin="479,143,0,0" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="bConnect" Content="Connect" HorizontalAlignment="Left" Height="27" Margin="479,186,0,0" VerticalAlignment="Top" Width="95" Click="bConnect_Click"/>
+        <Label x:Name="lConnect" Content="Not connected" HorizontalAlignment="Left" Height="27" Margin="579,186,0,0" VerticalAlignment="Top" Width="105"/>
+        <Button x:Name="bData" Content="GetData" HorizontalAlignment="Left" Height="26" Margin="479,218,0,0" VerticalAlignment="Top" Width="95" Click="bData_Click"/>
+        <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Height="26" Margin="574,143,0,0" VerticalAlignment="Top" Width="105"/>
+        <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="26" Margin="479,249,0,0" VerticalAlignment="Top" Width="95" Click="bAdd_Click"/>
+        <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="26" Margin="479,280,0,0" VerticalAlignment="Top" Width="95" Click="bRemove_Click"/>
+        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="579,306,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button x:Name="bEdit" Content="Edytuj" HorizontalAlignment="Left" Height="26" Margin="479,311,0,0" VerticalAlignment="Top" Width="95" Click="bEdit_Click"/>
 
 
     </Grid>
