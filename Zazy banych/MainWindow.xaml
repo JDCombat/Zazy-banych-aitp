@@ -13,11 +13,13 @@
                 <DataGridTextColumn Binding="{Binding Name}" Header="Imie"/>
                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko"/>
                 <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
-                <DataGridTextColumn Binding="{Binding Age}" Header="Wiek"/>
+                <DataGridTextColumn Binding="{Binding Pesel}" Header="PESEL"/>
+                <DataGridTextColumn Binding="{Binding Sex}" Header="Płeć"/>
+                <DataGridTextColumn Binding="{Binding BrithDate}" Header="Data ur."/>
+                <DataGridTextColumn Binding="{Binding domciu}" Header="Adres"/>
+                <DataGridTextColumn Binding="{Binding number}" Header="Numer tel."/>
+                <DataGridTextColumn Binding="{Binding additional}" Header="Dotatkowe inf."/>
+
 
             </DataGrid.Columns>
         </DataGrid>

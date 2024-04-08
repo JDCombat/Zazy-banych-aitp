@@ -83,6 +83,9 @@ namespace Zazy_banych
                         contact.Name = reader["Imie"].ToString();
                         contact.Surname = reader["Nazwisko"].ToString();
                         contact.Age = int.Parse(reader["wiek"].ToString());
+                        contact.Pesel = reader["Pesel"].ToString();
+                        contact.Sex = reader["Płeć"].ToString();
+                        contact.number = reader["Telefon"].ToString();
                         contact.ImageBytes = (Byte[])reader["zdjecie"];
                         dGrid.Items.Add(contact);
                     }
