@@ -15,7 +15,7 @@
                 <DataGridTextColumn Binding="{Binding Surname}" Header="Nazwisko"/>
                 <DataGridTextColumn Binding="{Binding Pesel}" Header="PESEL"/>
                 <DataGridTextColumn Binding="{Binding Sex}" Header="Płeć"/>
-                <DataGridTextColumn Binding="{Binding BrithDate}" Header="Data ur."/>
+                <DataGridTextColumn Binding="{Binding FormatedDate}" Header="Data ur."/>
                 <DataGridTextColumn Binding="{Binding domciu}" Header="Adres"/>
                 <DataGridTextColumn Binding="{Binding number}" Header="Numer tel."/>
                 <DataGridTextColumn Binding="{Binding additional}" Header="Dotatkowe inf."/>
@@ -36,7 +36,7 @@
         <PasswordBox x:Name="pbPassword" HorizontalAlignment="Left" Height="26" Margin="574,143,0,0" VerticalAlignment="Top" Width="105"/>
         <Button x:Name="bAdd" Content="Dodaj" HorizontalAlignment="Left" Height="26" Margin="479,249,0,0" VerticalAlignment="Top" Width="95" Click="bAdd_Click"/>
         <Button x:Name="bRemove" Content="Usuń" HorizontalAlignment="Left" Height="26" Margin="479,280,0,0" VerticalAlignment="Top" Width="95" Click="bRemove_Click"/>
-        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="579,306,0,0" VerticalAlignment="Top" Width="100"/>
+        <Image x:Name="iImage" HorizontalAlignment="Left" Height="100" Margin="579,306,0,0" VerticalAlignment="Top" Width="100" Stretch="Fill"/>
         <Button x:Name="bEdit" Content="Edytuj" HorizontalAlignment="Left" Height="26" Margin="479,311,0,0" VerticalAlignment="Top" Width="95" Click="bEdit_Click"/>
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -19,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySqlConnector;
+using Image = System.Drawing.Image;
 
 namespace Zazy_banych
 {
@@ -55,7 +57,7 @@ namespace Zazy_banych
                 }
                 catch(MySqlException ex)
                 {
-                    MessageBox.Show(ex.ToString(), "błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.ToString(), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 bConnect.Content = "Disconnect";
@@ -93,6 +95,7 @@ namespace Zazy_banych
                         contact.Email = reader["E-mail"].ToString();
                         contact.additional = reader["Inf.dodatkowe"].ToString();
                         contact.BirthDate = DateTime.Parse(reader["Data urodzenia"].ToString());
+                        contact.FormatedDate = contact.BirthDate.ToString("dd.MM.yyyy");
                         contact.ImageBytes = (Byte[])reader["zdjecie"];
                         lp++;
                         dGrid.Items.Add(contact);
@@ -103,7 +106,7 @@ namespace Zazy_banych
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString(), "błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.ToString(), "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -117,11 +120,18 @@ namespace Zazy_banych
             okno.ShowDialog();
             if (okno.DialogResult == true)
             {
-                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, zdjecie, Pesel, `Data urodzenia`, Adres, Telefon, `E-mail`, `Inf.dodatkowe`, Płeć) VALUES('{contact.Name}', '{contact.Surname}', ?data, '{contact.Pesel}', @date, '{contact.domciu}', '{contact.number}', '{contact.Email}', '{contact.additional}', {contact.Sex})", connection);
-                MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, contact.ImageBytes.Length);
-                fileParameter.Value = contact.ImageBytes;
+                MySqlCommand command = new MySqlCommand($"INSERT INTO 2pdane(imie, nazwisko, zdjecie, Pesel, `Data urodzenia`, Adres, Telefon, `E-mail`, `Inf.dodatkowe`, Płeć) VALUES('{contact.Name}', '{contact.Surname}', ?data, '{contact.Pesel}', @date, '{contact.domciu}', '{contact.number}', '{contact.Email}', '{contact.additional}', '{contact.Sex}')", connection);
+                if (contact.ImageBytes == null)
+                {
+                    command.Parameters.AddWithValue("?data", "");
+                }
+                else
+                {
+                    MySqlParameter fileParameter = new MySqlParameter("?data", MySqlDbType.MediumBlob, contact.ImageBytes.Length);
+                    fileParameter.Value = contact.ImageBytes;
+                    command.Parameters.Add(fileParameter);
+                }
                 command.Parameters.AddWithValue("@date", contact.BirthDate);
-                command.Parameters.Add(fileParameter);
                 command.ExecuteReader();
                 command.Dispose();
                 connection.Close() ;
@@ -184,7 +194,7 @@ namespace Zazy_banych
                     iImage.Source = image;
                 } catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message.ToString(),"Błąd przy obrazie" ,MessageBoxButton.OK);
+                    iImage.Source = new BitmapImage(new Uri(@"/imażes/not_found.jpg", UriKind.Relative));
                 }
 
             }

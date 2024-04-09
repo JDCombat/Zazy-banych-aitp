@@ -47,7 +47,7 @@ namespace Zazy_banych
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
-            if(tbName.Text == "" && tbSurname.Text == "")
+            if(tbName.Text == "" || tbSurname.Text == "" || tbPesel.Text == "" || tbAddress.Text == "")
             {
                 MessageBox.Show("Podaj informacje", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -105,7 +105,7 @@ namespace Zazy_banych
             int sum = 0;
             for (int i = 0; i < 10; i++)
             {
-                sum += int.Parse(tbPesel.Text[i].ToString()) * wagi[i] % 10;
+                sum += int.Parse(tempPesel[i].ToString()) * wagi[i] % 10;
             }
             if (int.Parse(tempPesel[10].ToString()) != 10 - (sum % 10)) return false;
             if (int.Parse(tempPesel.Substring(2,2))%20>12) return false;

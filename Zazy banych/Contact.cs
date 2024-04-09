@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace Zazy_banych
 {
@@ -17,6 +18,7 @@ namespace Zazy_banych
         public string Pesel { get; set;}
         public char Sex { get; set;}
         public DateTime BirthDate { get; set; }
+        public string FormatedDate { get; set; }
         public string domciu { get; set; }
         public string number { get; set; }
         public string Email { get; set; }

@@ -15,7 +15,7 @@
         <Button x:Name="bSave" Content="Save" HorizontalAlignment="Left" Height="25" Margin="162,320,0,0" VerticalAlignment="Top" Width="111" Click="bSave_Click"/>
         <Button x:Name="bImage" Content="Prześlij zdjęcie" HorizontalAlignment="Center" Margin="0,285,0,0" VerticalAlignment="Top" Width="250" Height="25" Click="bImage_Click"/>
         <Label x:Name="lPesel" Content="PESEL" HorizontalAlignment="Left" Margin="23,119,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbPesel" HorizontalAlignment="Left" Height="26" Margin="105,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
+        <TextBox x:Name="tbPesel" HorizontalAlignment="Left" Height="26" Margin="105,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168" MaxLength="11"/>
         <Label x:Name="lAddress" Content="Adres" HorizontalAlignment="Left" Margin="23,150,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbAddress" HorizontalAlignment="Left" Height="26" Margin="105,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="168"/>
         <Label x:Name="lNumber" Content="Numer tel." HorizontalAlignment="Left" Margin="23,181,0,0" VerticalAlignment="Top"/>
